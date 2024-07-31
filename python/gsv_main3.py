@@ -266,7 +266,7 @@ class GSVCapture():
         
         
     def getByLatLong(self, lat, lon):
-        print(lat, lon)
+        # print(lat, lon)
         outdir = "img"
         pano = Panorama()
         pano.fromLocation(lat, lon)
