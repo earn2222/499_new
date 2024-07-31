@@ -66,8 +66,8 @@ talisman = Talisman(app, content_security_policy=csp)
 
 gsv = GSVCapture()
 
-conn_string = "dbname='gsv2svfnewnew' user='postgres' host='postgis' port='5432'  password='1234'"
-conn_string1 = "dbname='gsv2svfnewnew' user='postgres' host='postgis' port='5432'  password='1234'"
+conn_string = "dbname='gsv2svfnewnew' user='postgres' host='gsv_postgis' port='5432'  password='1234'"
+conn_string1 = "dbname='gsv2svfnewnew' user='postgres' host='gsv_postgis' port='5432'  password='1234'"
 
 
 @app.route("/gsv/api")
@@ -186,6 +186,7 @@ def getByLatLong():
 @app.route('/gsv/getbylatlng/<lat>/<lng>/')
 def getbylatlng(lat, lng):
     res = gsv.getByLatLong(lat, lng)
+
     return jsonify(res)
 
 # SVF ขอบเขต
