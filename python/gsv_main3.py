@@ -62,9 +62,13 @@ class Panorama():
 
 
 class GSVCapture():
+
     def __init__(self):
         # Initialize necessary attributes
         self.input_shape = (3, 512, 512)
+
+    def hello(self):
+        print("hello")
 
     def checkDir(self, dir):
         if not (dir.endswith('/') or dir.endswith('\\')):
@@ -262,6 +266,7 @@ class GSVCapture():
         
         
     def getByLatLong(self, lat, lon):
+        print(lat, lon)
         outdir = "img"
         pano = Panorama()
         pano.fromLocation(lat, lon)
