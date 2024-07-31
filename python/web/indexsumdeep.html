@@ -111,7 +111,7 @@
     <nav class="bg-gray-800 text-white p-4">
         <div class="container mx-auto flex justify-between items-center relative">
             <a href="#">
-                <img src="/imggolo/logo" alt="Deep Learning" style="width: 40px; height: 40px;">
+                <img src="/gsv/imggolo/logo" alt="Deep Learning" style="width: 40px; height: 40px;">
             </a>
             <button id="menu-toggle" class="block lg:hidden focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -121,17 +121,17 @@
                 </svg>
             </button>
             <ul id="menu" class="hidden lg:flex space-x-4">
-                <li><a href="/homenew" target="_self" class="hover:text-gray-300">Home</a></li>
-                <li><a href="/manual" target="_self" class="hover:text-gray-300">Manual</a></li>
-                <li><a href="/homenew" target="_self" class="hover:text-gray-300">Back</a></li>
+                <li><a href="/gsv/homenew" target="_self" class="hover:text-gray-300">Home</a></li>
+                <li><a href="/gsv/manual" target="_self" class="hover:text-gray-300">Manual</a></li>
+                <li><a href="/gsv/homenew" target="_self" class="hover:text-gray-300">Back</a></li>
             </ul>
         </div>
         <!-- Dropdown Menu for Small Screens -->
         <div id="dropdown-menu"
             class="hidden lg:hidden bg-gray-800 text-white absolute right-0 mt-2 shadow-lg rounded-lg overflow-hidden z-50">
-            <a href="/homenew" class="block p-2 hover:bg-gray-700">Home</a>
-            <a href="/manual" class="block p-2 hover:bg-gray-700">Manual</a>
-            <a href="/homenew" class="block p-2 hover:bg-gray-700">Back</a>
+            <a href="/gsv/homenew" class="block p-2 hover:bg-gray-700">Home</a>
+            <a href="/gsv/manual" class="block p-2 hover:bg-gray-700">Manual</a>
+            <a href="/gsv/homenew" class="block p-2 hover:bg-gray-700">Back</a>
         </div>
     </nav>
 
@@ -146,19 +146,19 @@
         <!-- Responsive Grid Layout -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
             <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center hover-effect box1" id="box1">
-                <img src="/img/sumdeep1" alt="Box 1 Image" class="w-full h-80 object-cover mb-4 rounded">
+                <img src="/gsv/img/sumdeep1" alt="Box 1 Image" class="w-full h-80 object-cover mb-4 rounded">
                 <h2 class="text-2xl font-bold mb-2 text-center">อัตราการมองเห็นท้องฟ้า <br> Sky View Factor (SVF) </h2>
                 <p class="text-gray-700 mb-4 text-center">สัดส่วนพื้นที่ท้องฟ้าที่มองเห็น</p>
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center hover-effect box2" id="box2">
-                <img src="/img/sumdeep2" alt="Box 2 Image" class="w-full h-80 object-cover mb-4 rounded">
+                <img src="/gsv/img/sumdeep2" alt="Box 2 Image" class="w-full h-80 object-cover mb-4 rounded">
                 <h2 class="text-2xl font-bold mb-2 text-center">อัตราการมองเห็นต้นไม้ <br> Tree View Factor (TVF)</h2>
                 <p class="text-gray-700 mb-4 text-center">สัดส่วนพื้นที่ต้นไม้ที่มองเห็น</p>
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center hover-effect box3" id="box3">
-                <img src="/img/sumdeep3" alt="Box 3 Image" class="w-full h-80 object-cover mb-4 rounded">
+                <img src="/gsv/img/sumdeep3" alt="Box 3 Image" class="w-full h-80 object-cover mb-4 rounded">
                 <h2 class="text-2xl font-bold mb-2 text-center">อัตราการมองเห็นสิ่งปลูกสร้าง <br> Building View Factor
                     (BVF) </h2>
                 <p class="text-gray-700 mb-4 text-center">สัดส่วนพื้นที่สิ่งปลูกสร้างที่มองเห็น</p>
@@ -180,13 +180,13 @@
             menu.classList.toggle('show');
         });
         document.getElementById('box1').addEventListener('click', function () {
-            window.location.href = '/mapsvf';
+            window.location.href = '/gsv/mapsvf';
         });
         document.getElementById('box2').addEventListener('click', function () {
-            window.location.href = '/maptvf';
+            window.location.href = '/gsv/maptvf';
         });
         document.getElementById('box3').addEventListener('click', function () {
-            window.location.href = '/mapbvf';
+            window.location.href = '/gsv/mapbvf';
         });
     </script>
 </body>

@@ -257,7 +257,7 @@
     <nav class="bg-gray-800 text-white p-4 rounded-lg shadow-lg transition-all duration-300">
         <div class="container mx-auto flex justify-between items-center relative rounded-lg">
             <a href="#">
-                <img src="/imggolo/logo" alt="Deep Learning" style="width: 40px; height: 40px;">
+                <img src="/gsv/imggolo/logo" alt="Deep Learning" style="width: 40px; height: 40px;">
             </a>
             <button id="menu-toggle" aria-label="Toggle menu"
                 class="block lg:hidden focus:outline-none transition-transform transform hover:scale-105">
@@ -268,20 +268,20 @@
                 </svg>
             </button>
             <ul id="menu" class="hidden lg:flex space-x-4">
-                <li><a href="/homenew" target="_self"
+                <li><a href="/gsv/homenew" target="_self"
                         class="hover:text-gray-300 transition-colors duration-200">Home</a></li>
-                <li><a href="/manual" target="_self"
+                <li><a href="/gsv/manual" target="_self"
                         class="hover:text-gray-300 transition-colors duration-200">Manual</a>
                 </li>
-                <li><a href="/sumroute" target="_self"
+                <li><a href="/gsv/sumroute" target="_self"
                         class="hover:text-gray-300 transition-colors duration-200">Back</a></li>
             </ul>
         </div>
         <div id="dropdown-menu"
             class="hidden lg:hidden bg-gray-800 text-white absolute right-0 mt-2 shadow-lg rounded-lg overflow-hidden z-50">
-            <a href="/homenew" class="block p-2 hover:bg-gray-700">Home</a>
-            <a href="/manual" class="block p-2 hover:bg-gray-700">Manual</a>
-            <a href="/sumroute" class="block p-2 hover:bg-gray-700">Back</a>
+            <a href="/gsv/homenew" class="block p-2 hover:bg-gray-700">Home</a>
+            <a href="/gsv/manual" class="block p-2 hover:bg-gray-700">Manual</a>
+            <a href="/gsv/sumroute" class="block p-2 hover:bg-gray-700">Back</a>
         </div>
     </nav>
 
@@ -512,7 +512,7 @@
 
             function fetchData(route) {
                 showLoadingModal();
-                fetch(`/getroute/${route}/`)
+                fetch(`/gsv/getroute/${route}/`)
                     .then(response => response.json())
                     .then(data => {
                         console.log(`route ${route} data:`, data);
@@ -552,7 +552,7 @@
 
             document.getElementById('popup-close').addEventListener('click', hidePopup);
             function showImage(route) {
-                const imageUrl = `/imgroute/${route}`;
+                const imageUrl = `/gsv/imgroute/${route}`;
                 const image = new Image();
                 image.src = imageUrl;
                 image.alt = `Image for route ${route}`;

@@ -214,7 +214,7 @@
     <nav class="bg-gray-800 text-white p-4 rounded-lg shadow-lg transition-all duration-300">
         <div class="container mx-auto flex justify-between items-center relative rounded-lg">
             <a href="#">
-                <img src="/imggolo/logo" alt="Deep Learning" style="width: 40px; height: 40px;">
+                <img src="/gsv/imggolo/logo" alt="Deep Learning" style="width: 40px; height: 40px;">
             </a>
             <button id="menu-toggle"
                 class="block lg:hidden focus:outline-none transition-transform transform hover:scale-105">
@@ -225,20 +225,20 @@
                 </svg>
             </button>
             <ul id="menu" class="hidden lg:flex space-x-4">
-                <li><a href="/homenew" target="_self"
+                <li><a href="/gsv/homenew" target="_self"
                         class="hover:text-gray-300 transition-colors duration-200">Home</a></li>
-                <li><a href="/manual" target="_self"
+                <li><a href="/gsv/manual" target="_self"
                         class="hover:text-gray-300 transition-colors duration-200">Manual</a>
                 </li>
-                <li><a href="/sumdeep" target="_self"
+                <li><a href="/gsv/sumdeep" target="_self"
                         class="hover:text-gray-300 transition-colors duration-200">Back</a></li>
             </ul>
         </div>
         <div id="dropdown-menu"
             class="hidden lg:hidden bg-gray-800 text-white absolute right-0 mt-2 shadow-lg rounded-lg overflow-hidden z-50">
-            <a href="/homenew" class="block p-2 hover:bg-gray-700">Home</a>
-            <a href="/manual" class="block p-2 hover:bg-gray-700">Manual</a>
-            <a href="/sumdeep" class="block p-2 hover:bg-gray-700">Back</a>
+            <a href="/gsv/homenew" class="block p-2 hover:bg-gray-700">Home</a>
+            <a href="/gsv/manual" class="block p-2 hover:bg-gray-700">Manual</a>
+            <a href="/gsv/sumdeep" class="block p-2 hover:bg-gray-700">Back</a>
         </div>
     </nav>
 
@@ -389,7 +389,7 @@
             };
 
             const fetchDataByLatLng = () => {
-                return axios.get(`/getbylatlng/${e.latlng.lat}/${e.latlng.lng}/`);
+                return axios.get(`/gsv/getbylatlng/${e.latlng.lat}/${e.latlng.lng}/`);
             };
 
             // Use Promise.all to wait for all API calls to complete
