@@ -186,7 +186,6 @@ def getByLatLong():
 @app.route('/gsv/getbylatlng/<lat>/<lng>/')
 def getbylatlng(lat, lng):
     res = gsv.getByLatLong(lat, lng)
-    # print(res)
     return jsonify(res)
 
 # SVF ขอบเขต
