@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgis:
     image: postgis/postgis:latest
-    container_name: postgis
+    container_name: gsv_postgis
     ports:
       - "5435:5432"
     environment:
@@ -15,7 +15,7 @@ services:
 
   python:
     image: giswqs/segment-geospatial:latest
-    container_name: python
+    container_name: gsv_python
     working_dir: /app
     depends_on:
       - postgis
