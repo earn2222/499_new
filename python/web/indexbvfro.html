@@ -396,109 +396,17 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // Function to display the popup with the pie chart
-            function showPopup(content, svfPercent, bvfPercent, tvfPercent) {
+            // Function to display the popup without the pie chart
+            function showPopup(content) {
                 const popup = document.getElementById('custom-popup');
                 const popupContent = document.getElementById('popup-content');
 
-                // Update the popup content with additional information and pie chart container
+                // Update the popup content without the pie chart
                 popupContent.innerHTML = `
         ${content}
-        <div id="popup-chart" style="width: 100%; height: 200px;"></div>
     `;
                 popup.style.display = 'block';
                 preventScroll(); // Prevent scrolling
-
-                // Create pie chart with ECharts
-                const chartDom = document.getElementById('popup-chart');
-                const popupChart = echarts.init(chartDom);
-                const option = {
-                    tooltip: {
-                        trigger: 'item'
-                    },
-                    series: [
-                        {
-                            type: 'pie',
-                            radius: ['30%', '50%'], // Adjust the inner and outer radius for better layout
-                            data: [
-                                { value: svfPercent, name: 'SVF', itemStyle: { color: '#99CCFF' } },
-                                { value: bvfPercent, name: 'BVF', itemStyle: { color: '#FF99CC' } },
-                                { value: tvfPercent, name: 'TVF', itemStyle: { color: '#33FF99' } }
-                            ],
-                            emphasis: {
-                                itemStyle: {
-                                    shadowBlur: 10,
-                                    shadowOffsetX: 0,
-                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                }
-                            },
-                            label: {
-                                show: true,
-                                position: 'outside', // Display labels outside slices
-                                formatter: '{b}: {d}%', // Display name and percentage outside
-                                fontSize: 7, // Adjust font size as needed
-                                edgeDistance: 10 // Distance between pie edge and label
-                            },
-                            labelLine: {
-                                show: true,
-                                length: 5,
-                                length2: 3
-                            }
-                        }
-                    ],
-                    media: [
-                        {
-                            query: {
-                                minWidth: 320,
-                                maxWidth: 480
-                            },
-                            option: {
-                                series: [
-                                    {
-                                        radius: ['40%', '60%'], // Adjust for small screens
-                                        label: {
-                                            fontSize: 7
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            query: {
-                                minWidth: 481,
-                                maxWidth: 768
-                            },
-                            option: {
-                                series: [
-                                    {
-                                        radius: ['35%', '55%'], // Adjust for medium screens
-                                        label: {
-                                            fontSize: 8
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            query: {
-                                minWidth: 769
-                            },
-                            option: {
-                                series: [
-                                    {
-                                        radius: ['30%', '50%'], // Default for large screens
-                                        label: {
-                                            fontSize: 14
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                };
-
-                // Initialize the chart with the configured options
-                popupChart.setOption(option);
 
                 // Add event listener to button inside popup for showing image
                 popupContent.querySelector('#showImageButton').addEventListener('click', function () {
@@ -543,8 +451,8 @@
                         <b>NDBI:</b> ${point.ndbi}<br/>
                         <button id="showImageButton" style="margin-top: 10px; border: 2px solid; border-radius: 5px; padding: 5px 10px; background-color: #FF69B4; color: black; cursor: pointer;">Show Image for route ${route}</button>
                     `;
-                                // Show the popup with content and chart data
-                                showPopup(content, svfPercent, bvfPercent, tvfPercent);
+                                // Show the popup with content
+                                showPopup(content);
                             }).addTo(map); // Add marker to the map
                         });
                         closeModal(); // Close loading modal
@@ -555,6 +463,7 @@
                         closeModal(); // Close loading modal in case of error
                     });
             }
+
 
             document.getElementById('popup-close').addEventListener('click', hidePopup);
             function showImage(route) {
