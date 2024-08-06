@@ -386,20 +386,22 @@
                 if (bvfPercent <= 100) return "#c80004";
             }
 
-            // Add these functions to handle scrolling behavior
-
+            // Function to prevent scrolling when popup is shown
             function preventScroll() {
-                document.body.classList.add('no-scroll');
+                document.body.style.overflow = 'hidden';
             }
 
+            // Function to allow scrolling when popup is hidden
             function allowScroll() {
-                document.body.classList.remove('no-scroll');
+                document.body.style.overflow = 'auto';
             }
 
-            // Update showPopup function
+            // Function to display the popup with the pie chart
             function showPopup(content, svfPercent, bvfPercent, tvfPercent) {
                 const popup = document.getElementById('custom-popup');
                 const popupContent = document.getElementById('popup-content');
+
+                // Update the popup content with additional information and pie chart container
                 popupContent.innerHTML = `
         ${content}
         <div id="popup-chart" style="width: 100%; height: 200px;"></div>
@@ -495,59 +497,62 @@
                     ]
                 };
 
-                // Assuming `popupChart` is your ECharts instance
+                // Initialize the chart with the configured options
                 popupChart.setOption(option);
 
-
+                // Add event listener to button inside popup for showing image
                 popupContent.querySelector('#showImageButton').addEventListener('click', function () {
                     showImage(activeRoute);
                 });
             }
 
-            // Update hidePopup function
+            // Function to hide the popup
             function hidePopup() {
                 const popup = document.getElementById('custom-popup');
                 popup.style.display = 'none';
                 allowScroll(); // Allow scrolling
             }
 
+            // Function to fetch data for a specific route
             function fetchData(route) {
-                showLoadingModal();
+                showLoadingModal(); // Show a loading modal while data is being fetched
                 fetch(`/gsv/getroute/${route}/`)
-                    .then(response => response.json())
+                    .then(response => response.json()) // Parse JSON data from response
                     .then(data => {
                         console.log(`route ${route} data:`, data);
                         data.forEach(point => {
-                            const svfPercent = (point.svf / 321268 * 100).toFixed(2);
-                            const bvfPercent = (point.bvf / 321268 * 100).toFixed(2);
-                            const tvfPercent = (point.tvf / 321268 * 100).toFixed(2);
+                            // Calculate percentages for SVF, BVF, and TVF
+                            const svfPercent = ((point.svf / 321268) * 100).toFixed(2);
+                            const bvfPercent = ((point.bvf / 321268) * 100).toFixed(2);
+                            const tvfPercent = ((point.tvf / 321268) * 100).toFixed(2);
 
+                            // Add a circle marker for each data point
                             L.circleMarker([point.lat, point.lng], {
                                 color: getColor(bvfPercent),
                                 radius: 8
                             }).on('click', function () {
+                                // Create popup content with data and a button
                                 const content = `
-                            <b>Latitude:</b> ${point.lat}<br/>
-                            <b>Longitude:</b> ${point.lng}<br/>
-                            <b>SVF:</b> ${svfPercent}%<br/>
-                            <b>BVF:</b> ${bvfPercent}%<br/>
-                            <b>TVF:</b> ${tvfPercent}%<br/>
-                            <b>LST:</b> ${point.lst}°C<br/>
-                            <b>NDVI:</b> ${point.ndvi}<br/>
-                            <b>NDBI:</b> ${point.ndbi}<br/>
-                            <button id="showImageButton" style="margin-top: 10px; border: 2px solid; border-radius: 5px; padding: 5px 10px; background-color: #FF69B4	; color: black; cursor: pointer;">Show Image for route ${route}</button>
-
-                    
-                        `;
+                        <b>Latitude:</b> ${point.lat}<br/>
+                        <b>Longitude:</b> ${point.lng}<br/>
+                        <b>SVF:</b> ${svfPercent}%<br/>
+                        <b>BVF:</b> ${bvfPercent}%<br/>
+                        <b>TVF:</b> ${tvfPercent}%<br/>
+                        <b>LST:</b> ${point.lst}°C<br/>
+                        <b>NDVI:</b> ${point.ndvi}<br/>
+                        <b>NDBI:</b> ${point.ndbi}<br/>
+                        <button id="showImageButton" style="margin-top: 10px; border: 2px solid; border-radius: 5px; padding: 5px 10px; background-color: #FF69B4; color: black; cursor: pointer;">Show Image for route ${route}</button>
+                    `;
+                                // Show the popup with content and chart data
                                 showPopup(content, svfPercent, bvfPercent, tvfPercent);
-                            }).addTo(map);
+                            }).addTo(map); // Add marker to the map
                         });
-                        closeModal();
-                        updateChart(data);
+                        closeModal(); // Close loading modal
+                        updateChart(data); // Update other charts if necessary
                     })
                     .catch(error => {
                         console.error('Error fetching data:', error);
-                        closeModal();
+                        closeModal(); // Close loading modal in case of error
                     });
             }
 
