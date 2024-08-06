@@ -438,18 +438,18 @@
                     if (dataByLatLngResponse.data) {
                         // Initialize ECharts within the popup content
                         const popupContent = `
-        <b>Latitude:</b> ${e.latlng.lat}<br>
-        <b>Longitude:</b> ${e.latlng.lng}<br>
-        <b>Temperature:</b> ${temperature}&deg;C<br>
-        <b>SVF:</b> ${skyValue}%<br>
-        <b>BVF:</b> ${(dataByLatLngResponse.data.building / 321268 * 100).toFixed(2)}%<br>
-        <b>TVF:</b> ${(dataByLatLngResponse.data.tree / 321268 * 100).toFixed(2)}%<br>
-        <div class="image-container">
-            <img src="data:image/png;base64,${dataByLatLngResponse.data.fe}" alt="" width="100">
-            <img src="data:image/png;base64,${dataByLatLngResponse.data.fe_cls}" alt="" width="100">
-        </div>
-        <div id="echarts-container" style="width: 100%; height: 150px;"></div>
-    `;
+                                <b>Latitude:</b> ${e.latlng.lat}<br>
+                                <b>Longitude:</b> ${e.latlng.lng}<br>
+                                <b>Temperature:</b> ${temperature}&deg;C<br>
+                                <b>SVF:</b> ${skyValue}%<br>
+                                <b>BVF:</b> ${(dataByLatLngResponse.data.building / 321268 * 100).toFixed(2)}%<br>
+                                <b>TVF:</b> ${(dataByLatLngResponse.data.tree / 321268 * 100).toFixed(2)}%<br>
+                                <div class="image-container">
+                                <img src="data:image/png;base64,${dataByLatLngResponse.data.fe}" alt="" width="100">
+                                <img src="data:image/png;base64,${dataByLatLngResponse.data.fe_cls}" alt="" width="100">
+                                </div>
+                                <div id="echarts-container" style="width: 100%; height: 150px;"></div>
+                            `;
 
                         // If data exists, create the circle and popup with data
                         const circle = L.circle([e.latlng.lat, e.latlng.lng], { radius: 40, color: color }).addTo(map);

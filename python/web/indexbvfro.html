@@ -249,33 +249,6 @@
                 font-size: 10px;
             }
         }
-
-        #svfBvfTvfChart {
-            width: 100%;
-            height: 300px;
-            /* Default height for larger screens */
-        }
-
-        @media (max-width: 800px) {
-            #svfBvfTvfChart {
-                height: 250px;
-                /* Medium screens */
-            }
-        }
-
-        @media (max-width: 600px) {
-            #svfBvfTvfChart {
-                height: 200px;
-                /* Small screens */
-            }
-        }
-
-        @media (max-width: 400px) {
-            #svfBvfTvfChart {
-                height: 150px;
-                /* Extra small screens */
-            }
-        }
     </style>
 </head>
 
@@ -423,21 +396,48 @@
                 document.body.style.overflow = 'auto';
             }
 
-            // Function to display the popup without the pie chart
-            function showPopup(content, svfPercent, bvfPercent, tvfPercent) {
+            // Function to display the popup with a chart
+            function showPopup(content, chartData) {
                 const popup = document.getElementById('custom-popup');
                 const popupContent = document.getElementById('popup-content');
 
-                // Update the popup content without the pie chart
+                // Update the popup content with the chart div
                 popupContent.innerHTML = `
-                ${content}
-                <div id="svfBvfTvfChart" style="width: 100%; height: 300px; margin-top: 20px;"></div> <!-- Container for ECharts -->
-            `;
+        ${content}
+        <div id="chart"></div>
+    `;
                 popup.style.display = 'block';
-                preventScroll();
+                preventScroll(); // Prevent scrolling
 
-                // Initialize the chart after the popup is shown
-                initializeECharts(svfPercent, bvfPercent, tvfPercent);
+                // Initialize the chart
+                const chart = echarts.init(document.getElementById('chart'));
+                const chartOption = {
+                    title: {
+                        text: 'SVF, BVF, and TVF Percentages'
+                    },
+                    tooltip: {},
+                    xAxis: {
+                        type: 'category',
+                        data: ['SVF', 'BVF', 'TVF']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value} %'
+                        }
+                    },
+                    series: [{
+                        type: 'bar',
+                        data: chartData.values,
+                        itemStyle: {
+                            color: function (params) {
+                                const colors = ['#c23531', '#2f4554', '#61a0a8'];
+                                return colors[params.dataIndex];
+                            }
+                        }
+                    }]
+                };
+                chart.setOption(chartOption);
 
                 // Add event listener to button inside popup for showing image
                 popupContent.querySelector('#showImageButton').addEventListener('click', function () {
@@ -449,70 +449,7 @@
             function hidePopup() {
                 const popup = document.getElementById('custom-popup');
                 popup.style.display = 'none';
-                allowScroll();
-            }
-
-            // Function to initialize the chart with SVF, BVF, TVF data using ECharts
-            function initializeECharts(svfPercent, bvfPercent, tvfPercent) {
-                // Initialize the ECharts instance
-                const chartDom = document.getElementById('svfBvfTvfChart');
-                const myChart = echarts.init(chartDom);
-
-                // Define the chart options
-                const option = {
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: '{a} <br/>{b}: {c} ({d}%)'
-                    },
-                    legend: {
-                        orient: 'horizontal',
-                        bottom: 'bottom',
-                        data: ['SVF', 'BVF', 'TVF']
-                    },
-                    series: [
-                        {
-                            name: 'Percentages',
-                            type: 'pie',
-                            radius: ['50%', '70%'],
-                            avoidLabelOverlap: false,
-                            label: {
-                                show: true,
-                                position: 'outside',
-                                formatter: '{b}: {d}%'
-                            },
-                            emphasis: {
-                                label: {
-                                    show: true,
-                                    fontSize: '16',
-                                    fontWeight: 'bold'
-                                }
-                            },
-                            labelLine: {
-                                show: true
-                            },
-                            data: [
-                                { value: svfPercent, name: 'SVF' },
-                                { value: bvfPercent, name: 'BVF' },
-                                { value: tvfPercent, name: 'TVF' }
-                            ],
-                            itemStyle: {
-                                color: function (params) {
-                                    // Custom colors for each segment
-                                    const colors = ['#FF6384', '#36A2EB', '#FFCE56'];
-                                    return colors[params.dataIndex];
-                                }
-                            }
-                        }
-                    ]
-                };
-
-                // Set the options and render the chart
-                myChart.setOption(option);
-
-                // Make the chart responsive
-                window.addEventListener('resize', function () {
-                    myChart.resize();
-                });
+                allowScroll(); // Allow scrolling
             }
 
             // Function to fetch data for a specific route
@@ -535,18 +472,25 @@
                             }).on('click', function () {
                                 // Create popup content with data and a button
                                 const content = `
-                                <b>Latitude:</b> ${point.lat}<br/>
-                                <b>Longitude:</b> ${point.lng}<br/>
-                                <b>SVF:</b> ${svfPercent}%<br/>
-                                <b>BVF:</b> ${bvfPercent}%<br/>
-                                <b>TVF:</b> ${tvfPercent}%<br/>
-                                <b>LST:</b> ${point.lst}°C<br/>
-                                <b>NDVI:</b> ${point.ndvi}<br/>
-                                <b>NDBI:</b> ${point.ndbi}<br/>
-                                <button id="showImageButton" style="margin-top: 10px; border: 2px solid; border-radius: 5px; padding: 5px 10px; background-color: #FF69B4; color: black; cursor: pointer;">Show Image for route ${route}</button>
-                            `;
-                                // Show the popup with content and percentages
-                                showPopup(content, svfPercent, bvfPercent, tvfPercent);
+                        <b>Latitude:</b> ${point.lat}<br/>
+                        <b>Longitude:</b> ${point.lng}<br/>
+                        <b>SVF:</b> ${svfPercent}%<br/>
+                        <b>BVF:</b> ${bvfPercent}%<br/>
+                        <b>TVF:</b> ${tvfPercent}%<br/>
+                        <b>LST:</b> ${point.lst}°C<br/>
+                        <b>NDVI:</b> ${point.ndvi}<br/>
+                        <b>NDBI:</b> ${point.ndbi}<br/>
+                        <button id="showImageButton" style="margin-top: 10px; border: 2px solid; border-radius: 5px; padding: 5px 10px; background-color: #FF69B4; color: black; cursor: pointer;">Show Image for route ${route}</button>
+                    `;
+
+                                // Chart data
+                                const chartData = {
+                                    labels: ['SVF', 'BVF', 'TVF'],
+                                    values: [svfPercent, bvfPercent, tvfPercent]
+                                };
+
+                                // Show the popup with content and chart data
+                                showPopup(content, chartData);
                             }).addTo(map); // Add marker to the map
                         });
                         closeModal(); // Close loading modal
@@ -557,7 +501,6 @@
                         closeModal(); // Close loading modal in case of error
                     });
             }
-
 
             document.getElementById('popup-close').addEventListener('click', hidePopup);
             function showImage(route) {
