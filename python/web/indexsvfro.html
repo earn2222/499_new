@@ -372,17 +372,17 @@
                 // Implement close modal logic if needed
             }
 
-            function getColor(skyPercent) {
-                if (skyPercent <= 10) return "#c50000";
-                if (skyPercent <= 20) return "#d62929";
-                if (skyPercent <= 30) return "#ea5252";
-                if (skyPercent <= 40) return "#fb6767";
-                if (skyPercent <= 50) return "#f9aeae";
-                if (skyPercent <= 60) return "#deecfb";
-                if (skyPercent <= 70) return "#bedaf7";
-                if (skyPercent <= 80) return "#7ab3ef";
-                if (skyPercent <= 90) return "#368ce7";
-                if (skyPercent <= 100) return "#1661cb";
+            function getColor(svfPercent) {
+                if (svfPercent <= 10) return "#c50000";
+                if (svfPercent <= 20) return "#d62929";
+                if (svfPercent <= 30) return "#ea5252";
+                if (svfPercent <= 40) return "#fb6767";
+                if (svfPercent <= 50) return "#f9aeae";
+                if (svfPercent <= 60) return "#deecfb";
+                if (svfPercent <= 70) return "#bedaf7";
+                if (svfPercent <= 80) return "#7ab3ef";
+                if (svfPercent <= 90) return "#368ce7";
+                if (svfPercent <= 100) return "#1661cb";
             }
 
             // Add these functions to handle scrolling behavior
@@ -396,7 +396,7 @@
             }
 
             // Update showPopup function
-            function showPopup(content, svf, bvf, tvf) {
+            function showPopup(content, svfPercent, bvfPercent, tvfPercent) {
                 const popup = document.getElementById('custom-popup');
                 const popupContent = document.getElementById('popup-content');
                 popupContent.innerHTML = `
@@ -418,9 +418,9 @@
                             type: 'pie',
                             radius: ['30%', '50%'], // Adjust the inner and outer radius for better layout
                             data: [
-                                { value: svf, name: 'SVF', itemStyle: { color: '#99CCFF' } },
-                                { value: bvf, name: 'BVF', itemStyle: { color: '#FF99CC' } },
-                                { value: tvf, name: 'TVF', itemStyle: { color: '#33FF99' } }
+                                { value: svfPercent, name: 'SVF', itemStyle: { color: '#99CCFF' } },
+                                { value: bvfPercent, name: 'BVF', itemStyle: { color: '#FF99CC' } },
+                                { value: tvfPercent, name: 'TVF', itemStyle: { color: '#33FF99' } }
                             ],
                             emphasis: {
                                 itemStyle: {

@@ -416,17 +416,17 @@
                 document.getElementById('data-modal').style.display = 'none'; // Hide the modal
             });
 
-            function getColor(skyPercent) {
-                if (skyPercent <= 10) return "#c50000";
-                if (skyPercent <= 20) return "#d62929";
-                if (skyPercent <= 30) return "#ea5252";
-                if (skyPercent <= 40) return "#fb6767";
-                if (skyPercent <= 50) return "#f9aeae";
-                if (skyPercent <= 60) return "#deecfb";
-                if (skyPercent <= 70) return "#bedaf7";
-                if (skyPercent <= 80) return "#7ab3ef";
-                if (skyPercent <= 90) return "#368ce7";
-                if (skyPercent <= 100) return "#1661cb";
+            function getColor(buildingPercent) {
+                if (buildingPercent <= 10) return "#fde0e0";
+                if (buildingPercent <= 20) return "#f4c1c1";
+                if (buildingPercent <= 30) return "#fdaaaa";
+                if (buildingPercent <= 40) return "#f97c7c";
+                if (buildingPercent <= 50) return "#ee6969";
+                if (buildingPercent <= 60) return "##ff8b8e";
+                if (buildingPercent <= 70) return "#ff3d41";
+                if (buildingPercent <= 80) return "#ff0000";
+                if (buildingPercent <= 90) return "#dc0005";
+                if (buildingPercent <= 100) return "#c80004";
             }
 
             // Initialize the chart
@@ -563,7 +563,7 @@
                 `;
 
                             var marker = L.circleMarker([point.lat, point.lng], {
-                                color: getColor(skyPercent),
+                                color: getColor(buildingPercent),
                                 radius: 8
                             }).addTo(map);
 

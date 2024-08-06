@@ -373,17 +373,17 @@
                 // Implement close modal logic if needed
             }
 
-            function getColor(treePercent) {
-                if (treePercent <= 10) return "#fde0e0";
-                if (treePercent <= 20) return "#f4c1c1";
-                if (treePercent <= 30) return "#fdaaaa";
-                if (treePercent <= 40) return "#f97c7c";
-                if (treePercent <= 50) return "#ee6969";
-                if (treePercent <= 60) return "#ff8b8e";
-                if (treePercent <= 70) return "#ff3d41";
-                if (treePercent <= 80) return "#ff0000";
-                if (treePercent <= 90) return "#dc0005";
-                if (treePercent <= 100) return "#c80004";
+            function getColor(bvfPercent) {
+                if (bvfPercent <= 10) return "#fde0e0";
+                if (bvfPercent <= 20) return "#f4c1c1";
+                if (bvfPercent <= 30) return "#fdaaaa";
+                if (bvfPercent <= 40) return "#f97c7c";
+                if (bvfPercent <= 50) return "#ee6969";
+                if (bvfPercent <= 60) return "#ff8b8e";
+                if (bvfPercent <= 70) return "#ff3d41";
+                if (bvfPercent <= 80) return "#ff0000";
+                if (bvfPercent <= 90) return "#dc0005";
+                if (bvfPercent <= 100) return "#c80004";
             }
 
             // Add these functions to handle scrolling behavior
@@ -397,7 +397,7 @@
             }
 
             // Update showPopup function
-            function showPopup(content, svf, bvf, tvf) {
+            function showPopup(content, svfPercent, bvfPercent, tvfPercent) {
                 const popup = document.getElementById('custom-popup');
                 const popupContent = document.getElementById('popup-content');
                 popupContent.innerHTML = `
@@ -419,9 +419,9 @@
                             type: 'pie',
                             radius: ['30%', '50%'], // Adjust the inner and outer radius for better layout
                             data: [
-                                { value: svf, name: 'SVF', itemStyle: { color: '#99CCFF' } },
-                                { value: bvf, name: 'BVF', itemStyle: { color: '#FF99CC' } },
-                                { value: tvf, name: 'TVF', itemStyle: { color: '#33FF99' } }
+                                { value: svfPercent, name: 'SVF', itemStyle: { color: '#99CCFF' } },
+                                { value: bvfPercent, name: 'BVF', itemStyle: { color: '#FF99CC' } },
+                                { value: tvfPercent, name: 'TVF', itemStyle: { color: '#33FF99' } }
                             ],
                             emphasis: {
                                 itemStyle: {
@@ -523,7 +523,7 @@
                             const tvfPercent = (point.tvf / 321268 * 100).toFixed(2);
 
                             L.circleMarker([point.lat, point.lng], {
-                                color: getColor(svfPercent),
+                                color: getColor(bvfPercent),
                                 radius: 8
                             }).on('click', function () {
                                 const content = `
