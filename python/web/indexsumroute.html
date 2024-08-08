@@ -4,106 +4,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <titlesumroute< /title>
-        <meta http-equiv="Content-Security-Policy"
-            content="default-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self'; script-src 'self' 'nonce-random123';">
+    <title>sumroute</title>
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self'; script-src 'self' 'nonce-random123';">
+    <link rel="icon" href="/gsv/imggolo/logo" type="image/x-icon">
+    <!-- Link to Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+        }
 
-        <!-- Link to Tailwind CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-        <style>
-            body {
-                font-family: "Roboto", sans-serif;
-            }
+        .btn-pastel {
+            background-color: #437f8e;
+            transition: background-color 0.3s ease;
+        }
 
-            .btn-pastel {
-                background-color: #437f8e;
-                transition: background-color 0.3s ease;
-            }
-
-            .btn-pastel:hover {
-                background-color: #83b3c1;
-            }
+        .btn-pastel:hover {
+            background-color: #83b3c1;
+        }
 
 
-            .show {
-                display: block;
-            }
+        .show {
+            display: block;
+        }
 
-            /* Style adjustments for links */
-            #menu {
-                padding: 0 1rem;
-                /* Add padding to the entire menu */
+        /* Style adjustments for links */
+        #menu {
+            padding: 0 1rem;
+            /* Add padding to the entire menu */
 
-            }
+        }
 
-            #menu li {
-                margin-bottom: 0.5rem;
-                /* Add margin between menu items */
-            }
+        #menu li {
+            margin-bottom: 0.5rem;
+            /* Add margin between menu items */
+        }
 
-            #dropdown-menu {
-                padding: 0.5rem 1rem;
-                /* Add padding to dropdown menu */
-                border: 2px solid white;
-            }
+        #dropdown-menu {
+            padding: 0.5rem 1rem;
+            /* Add padding to dropdown menu */
+            border: 2px solid white;
+        }
 
-            #dropdown-menu a {
-                padding: 0.5rem 1rem;
+        #dropdown-menu a {
+            padding: 0.5rem 1rem;
 
-            }
+        }
 
-            /* Style for box 1 */
-            .box1 {
-                border: 2px solid #59cce9;
-                /* สีกรอบของ box 1 */
-                border-radius: 8px;
-                /* ขอบกรอบเว็บ */
-            }
+        /* Style for box 1 */
+        .box1 {
+            border: 2px solid #59cce9;
+            /* สีกรอบของ box 1 */
+            border-radius: 8px;
+            /* ขอบกรอบเว็บ */
+        }
 
-            .box1:hover {
-                transform: scale(1.05);
-                border-color: #83b3c1;
-                /* สีขอบของกรอบของ box 1 เมื่อใช้hover */
-            }
+        .box1:hover {
+            transform: scale(1.05);
+            border-color: #83b3c1;
+            /* สีขอบของกรอบของ box 1 เมื่อใช้hover */
+        }
 
-            /* Style for box 2 */
-            .box2 {
-                border: 2px solid #60ba5b;
-                /* สีกรอบของ box 2 */
-                border-radius: 8px;
-                /* ขอบกรอบของ box 2 */
-            }
+        /* Style for box 2 */
+        .box2 {
+            border: 2px solid #60ba5b;
+            /* สีกรอบของ box 2 */
+            border-radius: 8px;
+            /* ขอบกรอบของ box 2 */
+        }
 
-            .box2:hover {
-                transform: scale(1.05);
-                border-color: #7fca72;
-                /* สีกรอบของ box 2 เมื่อใช้ hover */
-            }
+        .box2:hover {
+            transform: scale(1.05);
+            border-color: #7fca72;
+            /* สีกรอบของ box 2 เมื่อใช้ hover */
+        }
 
-            /* Style for box 3 */
-            .box3 {
-                border: 2px solid #db2e2e;
-                /* สีกรอบของ box 3 */
-                border-radius: 8px;
-                /* ขอบกรอบของ box 3 */
-            }
+        /* Style for box 3 */
+        .box3 {
+            border: 2px solid #db2e2e;
+            /* สีกรอบของ box 3 */
+            border-radius: 8px;
+            /* ขอบกรอบของ box 3 */
+        }
 
-            .box3:hover {
-                transform: scale(1.05);
-                border-color: #ff6666;
-                /* สีกรอบของ box 3 เมื่อใช้hover */
-            }
+        .box3:hover {
+            transform: scale(1.05);
+            border-color: #ff6666;
+            /* สีกรอบของ box 3 เมื่อใช้hover */
+        }
 
-            /* Common style for hover effect */
-            .hover-effect {
-                transition: transform 0.3s ease;
-                cursor: pointer;
-            }
+        /* Common style for hover effect */
+        .hover-effect {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
 
-            .hover-effect:hover {
-                transform: scale(1.05);
-            }
-        </style>
+        .hover-effect:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100">

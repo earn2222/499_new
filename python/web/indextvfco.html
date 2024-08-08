@@ -11,7 +11,7 @@
              img-src 'self' https://unpkg.com https://tiles.stadiamaps.com https://mt1.google.com https://server.arcgisonline.com https://api.mapbox.com data:; 
              script-src 'self' 'nonce-random123' https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.0/echarts.min.js https://unpkg.com https://cdn.jsdelivr.net https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js https://cdn.jsdelivr.net/npm/chart.js; 
              connect-src 'self' https://api.waqi.info;">
-
+    <link rel="icon" href="/gsv/imggolo/logo" type="image/x-icon">
     <!-- Link to Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -556,7 +556,7 @@
                         <b>NDBI:</b> ${point.ndbi}<br/>
                         <div id="chartContainer${index}" style="width: 250px; height: 180px; margin-top: 10px;"></div><br/>
                        <div style="display: flex; justify-content: center;">
-                        <button id="showImageButton${index}" style="margin-top: 10px; border: 2px solid; border-radius: 5px; padding: 5px 10px; background-color: #66CDAA; color: black; cursor: pointer;">Show Image for Week ${week}</button>
+                        <button id="showImageButton${index}" style="margin-top: 10px; border: 2px solid; border-radius: 5px; padding: 5px 10px; background-color: #66CDAA; color: black; cursor: pointer;">Correlation Matrix for Week ${week}</button>
                         </div>
                     </div>
                 `;
