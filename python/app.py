@@ -82,12 +82,10 @@ def homenew():
     """Render the new homepage."""
     return render_template('indexhomenew.html')
 
-
 @app.route("/gsv/homenew")
 def homeneww():
     """Render the new homepage."""
     return render_template('indexhomenew.html')
-
 
 @app.route('/gsv/img/homenew1')
 def homenew1():
@@ -98,7 +96,6 @@ def homenew1():
     else:
         return "Image not found", 404
 
-
 @app.route('/gsv/img/homenew2')
 def homenew2():
     """Serve a specific image."""
@@ -107,7 +104,6 @@ def homenew2():
         return send_file(img_path, mimetype='image/jpeg')
     else:
         return "Image not found", 404
-
 
 @app.route('/gsv/img/homenew3')
 def homenew3():
@@ -119,13 +115,10 @@ def homenew3():
         return "Image not found", 404
 
 # หน้า sumdeep
-
-
 @app.route("/gsv/sumdeep")
 def sumdeep():
     """Render the new homepage."""
     return render_template('indexsumdeep.html')
-
 
 @app.route('/gsv/img/sumdeep1')
 def sumdeep1():
@@ -136,7 +129,6 @@ def sumdeep1():
     else:
         return "Image not found", 404
 
-
 @app.route('/gsv/img/sumdeep2')
 def sumdeep2():
     """Serve a specific image."""
@@ -145,7 +137,6 @@ def sumdeep2():
         return send_file(img_path, mimetype='image/jpeg')
     else:
         return "Image not found", 404
-
 
 @app.route('/gsv/img/sumdeep3')
 def sumdeep3():
@@ -156,7 +147,6 @@ def sumdeep3():
     else:
         return "Image not found", 404
 
-
 # หน้า sumco
 @app.route("/gsv/sumco")
 def sumco():
@@ -164,16 +154,12 @@ def sumco():
     return render_template('indexsumco.html')
 
 # หน้า sumroute
-
-
 @app.route("/gsv/sumroute")
 def sumroute():
     """Render the new homepage."""
     return render_template('indexsumroute.html')
 
 # หน้า deep SVF TVF BVF # api area
-
-
 @app.route("/gsv/getByLatLong/")
 def getByLatLong():
     lat = request.args.get('lat')
@@ -182,69 +168,52 @@ def getByLatLong():
     # print(res)
     return jsonify({"lat": lat, "lng": lng, "status": res})
 
-
 @app.route('/gsv/getbylatlng/<lat>/<lng>/')
 def getbylatlng(lat, lng):
     res = gsv.getByLatLong(lat, lng)
-
     return jsonify(res)
 
 # SVF ขอบเขต
-
-
 @app.route("/gsv/mapsvf")
 def mapsvf():
     return render_template('indexmapsvf.html')
-
 
 @app.route('/gsv/static1/<path:filename>')
 def static1(filename):
     return send_from_directory('static1', filename)
 
 # TVF ขอบเขต
-
-
 @app.route("/gsv/maptvf")
 def maptvf():
     return render_template('indexmaptvf.html')
-
 
 @app.route('/gsv/static1/<path:filename>')
 def static2(filename):
     return send_from_directory('static1', filename)
 
 # BVF ขอบเขต
-
-
 @app.route("/gsv/mapbvf")
 def mapbvf():
     return render_template('indexmapbvf.html')
-
 
 @app.route('/gsv/static1/<path:filename>')
 def static3(filename):
     return send_from_directory('static1', filename)
 
 # หน้า co SVF TVF BVF
-
-
 @app.route("/gsv/svfco")
 def svfco():
     return render_template('indexsvfco.html')
 
-
 @app.route("/gsv/tvfco")
 def tvfco():
     return render_template('indextvfco.html')
-
 
 @app.route("/gsv/bvfco")
 def bvfco():
     return render_template('indexbvfco.html')
 
 # ข้อมูลเทศบาลนครเชียงใหม่
-
-
 @app.route('/gsv/getstreeview/<week>/')
 def getbyweek(week):
     query = f"SELECT * FROM gsv2svfnewnew{week};"
@@ -253,7 +222,6 @@ def getbyweek(week):
             cur.execute(query)
             rows = cur.fetchall()
             return rows
-
 
 @app.route('/gsv/imgweek/<int:week>')
 def serve_image(week):
@@ -267,24 +235,19 @@ def serve_image(week):
 
 
 # หน้า route SVF TVF BVF
-
 @app.route("/gsv/svfro")
 def svfro():
     return render_template('indexsvfro.html')
 
-
 @app.route("/gsv/tvfro")
 def tvfro():
     return render_template('indextvfro.html')
-
 
 @app.route("/gsv/bvfro")
 def bvfro():
     return render_template('indexbvfro.html')
 
 # ข้อมูลถนน4เส้น
-
-
 @app.route('/gsv/getroute/<route>/')
 def getbyroute(route):
     query = f"SELECT * FROM route{route};"
@@ -293,7 +256,6 @@ def getbyroute(route):
             cur.execute(query)
             rows = cur.fetchall()
             return rows
-
 
 @app.route('/gsv/imgroute/<int:route>')
 def serve_image1(route):
@@ -307,12 +269,9 @@ def serve_image1(route):
         return f"Image for route {route} not found", 404
 
 # หน้าโปลไฟล์
-
-
 @app.route("/gsv/aboutnew")
 def aboutnew():
     return render_template('indexaboutnew.html')
-
 
 @app.route('/gsv/imgaboutnew/aboutnew1')
 def aboutnew1():
@@ -321,7 +280,6 @@ def aboutnew1():
         return send_file(img_path, mimetype='image/jpeg')
     else:
         return "Image not found", 404
-
 
 @app.route('/gsv/imgaboutnew/aboutnew2')
 def aboutnew2():
@@ -332,8 +290,6 @@ def aboutnew2():
         return "Image not found", 404
 
 # โลโก้
-
-
 @app.route('/gsv/imggolo/logo')
 def logo():
     img_path = './homenew/logo.jpg'
@@ -341,13 +297,11 @@ def logo():
         return send_file(img_path, mimetype='image/jpeg')
     else:
         return "Image not found", 404
+    
 # manual
-
-
 @app.route("/gsv/manual")
 def manual():
     return render_template('indexmanual.html')
-
 
 @app.route('/gsv/img1map/map1')
 def map1():
@@ -356,7 +310,6 @@ def map1():
         return send_file(img_path, mimetype='image/jpeg')
     else:
         return "Image not found", 404
-
 
 @app.route('/gsv/img1map/map2')
 def map2():
@@ -377,11 +330,9 @@ def map3():
 
 
 # aboutnew11
-
 @app.route("/gsv/aboutnew11")
 def aboutnew11():
     return render_template('indaxaboutnew1.html')
-
 
 @app.route('/gsv/imgaboutnew1/aboutnew1')
 def about1():
@@ -390,7 +341,6 @@ def about1():
         return send_file(img_path, mimetype='image/jpeg')
     else:
         return "Image not found", 404
-
 
 @app.route('/gsv/imgaboutnew1/aboutnew2')
 def about2():

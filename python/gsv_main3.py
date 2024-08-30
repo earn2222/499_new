@@ -248,15 +248,6 @@ class GSVCapture():
         return pixCut
         
     def insert_data(self, panoid, lat, lng, res, date):
-
-        # print(panoid)
-        # print(lat)
-        # print(lng)
-        # print(res["sky"])
-        # print(res["building"])
-        # print(res["tree"])
-        # print(res["fe"])
-        # print(res["fe_cls"])
         conn_string = "dbname='gsv2svfnewnew' user='postgres' host='postgis' port='5432' password='1234'"
         with psycopg2.connect(conn_string) as conn:
             with conn.cursor() as cur:

@@ -126,31 +126,12 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            /* Adjust the gap as needed */
         }
 
         .image-container img {
             display: block;
         }
 
-        /* #echarts-container {
-            width: 250px;
-            height: 200px;
-            position: absolute;
-            bottom: 20px;
-            left: 5px;
-            z-index: 1000;
-
-        }
-
-        @media (max-width: 768px) {
-            #echarts-container {
-                width: 150px;
-                height: 100px;
-                bottom: 5px;
-                left: 0;
-            }
-        } */
 
         .legend-container {
             position: absolute;
@@ -259,16 +240,16 @@
                 <center>
                     <h6 class="text-lg font-semibold mb-2">SVF</h6>
                 </center>
-                <div><span style="background-color:#c50000;"></span> 0-10%</div>
-                <div><span style="background-color:#d62929;"></span> 10-20%</div>
-                <div><span style="background-color:#ea5252;"></span> 20-30%</div>
-                <div><span style="background-color:#fb6767;"></span> 30-40%</div>
-                <div><span style="background-color:#f9aeae;"></span> 40-50%</div>
-                <div><span style="background-color:#deecfb;"></span> 50-60%</div>
-                <div><span style="background-color:#bedaf7;"></span> 60-70%</div>
-                <div><span style="background-color:#7ab3ef;"></span> 70-80%</div>
-                <div><span style="background-color:#368ce7;"></span> 80-90%</div>
-                <div><span style="background-color:#1666ba;"></span> 90-100%</div>
+                <div><span style="background-color:#B22222;"></span> 0-10%</div>
+                <div><span style="background-color:#FF4500;"></span> 10-20%</div>
+                <div><span style="background-color:#FF7F00;"></span> 20-30%</div>
+                <div><span style="background-color:#ffbf49;"></span> 30-40%</div>
+                <div><span style="background-color:#FFFF00;"></span> 40-50%</div>
+                <div><span style="background-color:#ADFF2F;"></span> 50-60%</div>
+                <div><span style="background-color:#00FF00;"></span> 60-70%</div>
+                <div><span style="background-color:#00CED1;"></span> 70-80%</div>
+                <div><span style="background-color:#1E90FF;"></span> 80-90%</div>
+                <div><span style="background-color:#0000FF;"></span> 90-100%</div>
             </div>
         </div>
 
@@ -317,42 +298,37 @@
             attribution: '&copy; <a href="https://www.esri.com">Esri</a>'
         });
 
-
-
-        // Add base layers to the map
         google_Terrain.addTo(map);
 
-        // Create a layer group for the GeoJSON data
+
         const geoJsonLayer = L.layerGroup();
 
-        // Load GeoJSON data and add to the layer group
         fetch("{{ url_for('static1', filename='cm.geojson') }}")
             .then(response => response.json())
             .then(data => {
                 L.geoJSON(data, {
                     style: function (feature) {
                         return {
-                            color: '#3388ff', // Adjust color to a nice blue
+                            color: '#3388ff',
                             weight: 2,
                             opacity: 1,
-                            fillOpacity: 0.2, // Add some transparency to the fill
-                            fillColor: '#3388ff' // Matching fill color
+                            fillOpacity: 0.2,
+                            fillColor: '#3388ff'
                         };
                     },
                     onEachFeature: function (feature, layer) {
                         if (feature.properties && feature.properties.NAME_1) {
-                            layer.bindPopup(feature.properties.NAME_1); // Display feature name on click
+                            layer.bindPopup(feature.properties.NAME_1);
                         }
                     }
                 }).addTo(geoJsonLayer);
             });
 
-        // Define overlay map for control
         const overlayMap = {
             "ขอบเขตเทศบาลนครเชียงใหม่": geoJsonLayer
         };
 
-        // Define base map for control
+
         const baseMap = {
 
             "แผนที่จาก Google Terrain": google_Terrain,
@@ -360,7 +336,7 @@
 
         };
 
-        // Add layers control to the map
+
         L.control.layers(baseMap, overlayMap).addTo(map);
 
         // Click event handler on the map
@@ -382,7 +358,6 @@
                 return axios.get(`/gsv/getbylatlng/${e.latlng.lat}/${e.latlng.lng}/`);
             };
 
-            // Use Promise.all to wait for all API calls to complete
             Promise.all([
                 fetchTemperature(),
                 fetchDataByLatLng()
@@ -393,7 +368,7 @@
 
                     loadingIndicator.style.display = 'none';
 
-                    // Check if temperature data exists and extract temperature
+
                     let temperature = '';
                     if (temperatureResponse.data.data && temperatureResponse.data.data.iaqi && temperatureResponse.data.data.iaqi.t) {
                         temperature = temperatureResponse.data.data.iaqi.t.v;
@@ -402,32 +377,30 @@
                     }
 
                     const skyValue = ((dataByLatLngResponse.data.sky / 321268) * 100).toFixed(2);
-
                     let color;
-
                     // Determine color based on skyValue range
                     if (skyValue >= 0 && skyValue < 10) {
-                        color = '#c50000'; // 0-10
+                        color = '#B22222';
                     } else if (skyValue >= 10 && skyValue < 20) {
-                        color = '#d62929'; // 10-20
+                        color = '#FF4500'; // 10-20
                     } else if (skyValue >= 20 && skyValue < 30) {
-                        color = '#ea5252'; // 20-30
+                        color = '#FF7F00'; // 20-30
                     } else if (skyValue >= 30 && skyValue < 40) {
-                        color = '#fb6767'; // 30-40
+                        color = '#ffbf49'; // 30-40
                     } else if (skyValue >= 40 && skyValue < 50) {
-                        color = '#f9aeae'; // 40-50
+                        color = '#FFFF00'; // 40-50
                     } else if (skyValue >= 50 && skyValue < 60) {
-                        color = '#deecfb'; // 50-60
+                        color = '#ADFF2F'; // 50-60
                     } else if (skyValue >= 60 && skyValue < 70) {
-                        color = '#bedaf7'; // 60-70
+                        color = '#00FF00'; // 60-70
                     } else if (skyValue >= 70 && skyValue < 80) {
-                        color = '#7ab3ef'; // 70-80
+                        color = '#00CED1'; // 70-80
                     } else if (skyValue >= 80 && skyValue < 90) {
-                        color = '#368ce7'; // 80-90
+                        color = '#1E90FF'; // 80-90
                     } else if (skyValue >= 90 && skyValue <= 100) {
-                        color = '#1666ba'; // 90-100
+                        color = '#0000FF'; // 90-100
                     } else {
-                        color = '#070707'; // Default color if skyValue is out of specified range
+                        color = '#070707';
                     }
 
                     console.log(`Temperature: ${temperature}`);
@@ -451,26 +424,26 @@
                                 <div id="echarts-container" style="width: 100%; height: 150px;"></div>
                             `;
 
-                        // If data exists, create the circle and popup with data
+
                         const circle = L.circle([e.latlng.lat, e.latlng.lng], { radius: 40, color: color }).addTo(map);
                         const popup = L.popup({
-                            minWidth: 210, // Optional: Set a minimum width for the popup
-                            maxWidth: 400, // Optional: Set a maximum width for the popup
+                            minWidth: 210,
+                            maxWidth: 400,
                         }).setContent(popupContent);
 
                         circle.bindPopup(popup);
 
-                        // Open the popup without allowing vertical scrolling
+
                         circle.openPopup();
 
-                        // Prevent scrolling in the popup
+
                         const popupContainer = popup.getElement();
                         if (popupContainer) {
                             popupContainer.style.overflowY = 'hidden';
                         }
 
 
-                        // Initialize ECharts after the popup is open
+
                         const echartsContainer = document.getElementById('echarts-container');
                         const myChart = echarts.init(echartsContainer);
 
@@ -504,7 +477,7 @@
                                         position: 'outside',
                                         fontSize: 10,
                                         padding: [0, 10],
-                                        overflow: 'break' // 
+                                        overflow: 'break'
                                     },
                                     emphasis: {
                                         label: {
@@ -539,32 +512,26 @@
                             }
                         };
 
-                        // Set ECharts option
+
                         myChart.setOption(option);
 
-                        // Add responsive behavior
                         window.addEventListener('resize', () => {
                             myChart.resize();
                         });
 
-                        // Resize chart on initial load for better responsiveness
                         window.dispatchEvent(new Event('resize'));
                     } else {
-                        // If no data is available, show an alert message
+
                         alert('No data available for this location.');
                     }
-
-
                 })
 
                 .catch(error => {
                     console.error(error);
                     loadingIndicator.style.display = 'none'; // Hide the loading indicator
                 });
-
         });
     </script>
-
 </body>
 
 </html>

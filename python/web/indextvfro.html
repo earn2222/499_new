@@ -352,16 +352,16 @@
                 <center>
                     <h6 class="text-lg font-semibold mb-2">TVF</h6>
                 </center>
-                <div><span style="background-color:#89953f;"></span> 0-10%</div>
-                <div><span style="background-color:#9ca950;"></span> 10-20%</div>
-                <div><span style="background-color:#a9b65f;"></span> 20-30%</div>
-                <div><span style="background-color:#b1bd6e;"></span> 30-40%</div>
-                <div><span style="background-color:#bec78d;"></span> 40-50%</div>
-                <div><span style="background-color:#86b07f;"></span> 50-60%</div>
-                <div><span style="background-color:#72a36a;"></span> 60-70%</div>
-                <div><span style="background-color:#5e9655;"></span> 70-80%</div>
-                <div><span style="background-color:#4a8940;"></span> 80-90%</div>
-                <div><span style="background-color:#367c2b;"></span> 90-100%</div>
+                <div><span style="background-color:#B22222;"></span> 0-10%</div>
+                <div><span style="background-color:#FF4500;"></span> 10-20%</div>
+                <div><span style="background-color:#FF7F00;"></span> 20-30%</div>
+                <div><span style="background-color:#ffbf49;"></span> 30-40%</div>
+                <div><span style="background-color:#FFFF00;"></span> 40-50%</div>
+                <div><span style="background-color:#FFFF99;"></span> 50-60%</div>
+                <div><span style="background-color:#BDFCC9;"></span> 60-70%</div>
+                <div><span style="background-color:#7FFF00;"></span> 70-80%</div>
+                <div><span style="background-color:#00CC00;"></span> 80-90%</div>
+                <div><span style="background-color:#006400;"></span> 90-100%</div>
             </div>
         </div>
     </div>
@@ -411,16 +411,16 @@
         }
 
         function getColor(svfPercent) {
-            if (svfPercent <= 10) return "#89953f";
-            if (svfPercent <= 20) return "#9ca950";
-            if (svfPercent <= 30) return "#a9b65f";
-            if (svfPercent <= 40) return "#b1bd6e";
-            if (svfPercent <= 50) return "#bec78d";
-            if (svfPercent <= 60) return "#86b07f";
-            if (svfPercent <= 70) return "#72a36a";
-            if (svfPercent <= 80) return "#5e9655";
-            if (svfPercent <= 90) return "#4a8940";
-            if (svfPercent <= 100) return "#367c2b";
+            if (svfPercent <= 10) return "#B22222";
+            if (svfPercent <= 20) return "#FF4500";
+            if (svfPercent <= 30) return "#FF7F00";
+            if (svfPercent <= 40) return "#ffbf49";
+            if (svfPercent <= 50) return "#FFFF00";
+            if (svfPercent <= 60) return "#FFFF99";
+            if (svfPercent <= 70) return "#BDFCC9";
+            if (svfPercent <= 80) return "#7FFF00";
+            if (svfPercent <= 90) return "#00CC00";
+            if (svfPercent <= 100) return "#006400";
         }
 
         // Function to prevent scrolling when popup is shown
@@ -800,10 +800,10 @@
 
         function updaterouteDescription(route) {
             const descriptions = {
-                1: 'Route 1: 30 ตุลาคม 2566 - 5 พฤจิกายน 2566',
-                2: 'Route 2: 18 เมษายน 2565 - 24 เมษายน 2565',
-                3: 'Route 3: 30 มกราคม 2566 - 5 มกราคม 2566',
-                4: 'Route 4: 29 มกราคม 2567 - 4 กุมภาพันธ์ 2567',
+                1: 'Route 1: 30 ตุลาคม 2566 - 5 พฤจิกายน 2566 <br> เส้นทางทิศเหนือ-ทิศใต้ (เริ่มต้น:แม่ริม-สิ้นสุด:หางดง) ',
+                2: 'Route 2: 18 เมษายน 2565 - 24 เมษายน 2565 <br> เส้นทางทิศตะวันออก-ทิศตะวันตก (เริ่มต้น:สถาบันวิจัยและพัฒนาพื้นที่สูง (องค์การมหาชน) ตำบลสุเทพ อำเภอเมือง)-สิ้นสุด:ตำบลต้นเปา อำเภอสันกำแพง)',
+                3: 'Route 3: 30 มกราคม 2566 - 5 มกราคม 2566 <br> เส้นทางทิศตะวันตกเฉียงเหนือ-ทิศตะวันออกเฉียงใต้  (เริ่มต้น:อนุสาวรีย์พระครูบาศีวิชัย ตำบลสุเทพ อำเภอเมือง -สิ้นสุด:ตำบลหนองผึ้ง อำเภอสารภี) ',
+                4: 'Route 4: 29 มกราคม 2567 - 4 กุมภาพันธ์ 2567 <br> เส้นทางทิศตะวันตกเฉียงใต้-ทิศตะวันออกเฉียงเหนือ (เริ่มต้น:กองบิน41 ตำบลสุเทพ อำเภอเมือง-สิ้นสุด:โรงพยาบาลดอยสะเก็ด ตำบลเชิงดอย อำเภอดอยสะเก็ด)',
             };
 
             routeDescription.innerHTML =
