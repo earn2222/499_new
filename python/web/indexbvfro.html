@@ -282,6 +282,41 @@
             width: 100%;
             height: 100%;
         }
+
+        #route-dropdown {
+            width: 100%;
+            max-width: 130px;
+            box-sizing: border-box;
+            padding: 8px;
+        }
+
+        @media (max-width: 1200px) {
+            #route-dropdown {
+                width: 60%;
+                max-width: 130px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            #route-dropdown {
+                width: 60%;
+                max-width: 130px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #route-dropdown {
+                width: 60%;
+                max-width: 130px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            #route-dropdown {
+                width: 60%;
+                max-width: 130px;
+            }
+        }
     </style>
 </head>
 
@@ -769,10 +804,17 @@
         const routeDropdown = document.getElementById('route-dropdown');
         const showImageButton = document.getElementById('showImageButton');
 
+        const routeDescriptions = {
+            1: 'เส้นทางทิศเหนือ-ทิศใต้',
+            2: 'เส้นทางทิศตะวันตก-ทิศตะวันออก',
+            3: 'เส้นทางทิศตะวันตกเฉียงเหนือ-ทิศตะวันออกเฉียงใต้',
+            4: 'เส้นทางทิศตะวันตกเฉียงใต้-ทิศตะวันออกเฉียงเหนือ'
+        };
+
         for (let route = 1; route <= 4; route++) {
             const option = document.createElement('option');
             option.value = route;
-            option.textContent = `route ${route}`;
+            option.textContent = `Route ${route} (${routeDescriptions[route]})`;
             routeDropdown.appendChild(option);
         }
 
@@ -781,7 +823,7 @@
             if (activeRoute !== selectedRoute) {
                 activeRoute = selectedRoute;
 
-                // แสดงปุ่มเมื่อมีการเลือกเส้นทาง
+                // Show the button when a route is selected
                 showImageButton.style.display = 'inline-block';
 
                 map.eachLayer(function (layer) {
@@ -800,9 +842,9 @@
 
         function updaterouteDescription(route) {
             const descriptions = {
-                1: 'Route 1: 30 ตุลาคม 2566 - 5 พฤจิกายน 2566 <br> เส้นทางทิศเหนือ-ทิศใต้ (เริ่มต้น:แม่ริม-สิ้นสุด:หางดง) ',
-                2: 'Route 2: 18 เมษายน 2565 - 24 เมษายน 2565 <br> เส้นทางทิศตะวันตก-ทิศตะวันออก (เริ่มต้น:สถาบันวิจัยและพัฒนาพื้นที่สูง (องค์การมหาชน) ตำบลสุเทพ อำเภอเมือง-สิ้นสุด:ตำบลต้นเปา อำเภอสันกำแพง)',
-                3: 'Route 3: 30 มกราคม 2566 - 5 มกราคม 2566 <br> เส้นทางทิศตะวันตกเฉียงเหนือ-ทิศตะวันออกเฉียงใต้ (เริ่มต้น:อนุสาวรีย์พระครูบาศีวิชัย ตำบลสุเทพ อำเภอเมือง -สิ้นสุด:ตำบลหนองผึ้ง อำเภอสารภี) ',
+                1: 'Route 1: 30 ตุลาคม 2566 - 5 พฤจิกายน 2566 <br> เส้นทางทิศเหนือ-ทิศใต้ (เริ่มต้น:แม่ริม-สิ้นสุด:หางดง)',
+                2: 'Route 2: 18 เมษายน 2565 - 24 เมษายน 2565 <br> เส้นทางทิศตะวันตก-ทิศตะวันออก (เริ่มต้น:สถาบันวิจัยและพัฒนาพื้นที่สูง (องค์การมหาชน) ตำบลสุเทพ อำเภอเมือง)-สิ้นสุด:ตำบลต้นเปา อำเภอสันกำแพง)',
+                3: 'Route 3: 30 มกราคม 2566 - 5 มกราคม 2566 <br> เส้นทางทิศตะวันตกเฉียงเหนือ-ทิศตะวันออกเฉียงใต้ (เริ่มต้น:อนุสาวรีย์พระครูบาศีวิชัย ตำบลสุเทพ อำเภอเมือง -สิ้นสุด:ตำบลหนองผึ้ง อำเภอสารภี)',
                 4: 'Route 4: 29 มกราคม 2567 - 4 กุมภาพันธ์ 2567 <br> เส้นทางทิศตะวันตกเฉียงใต้-ทิศตะวันออกเฉียงเหนือ (เริ่มต้น:กองบิน41 ตำบลสุเทพ อำเภอเมือง-สิ้นสุด:โรงพยาบาลดอยสะเก็ด ตำบลเชิงดอย อำเภอดอยสะเก็ด)',
             };
 
@@ -812,8 +854,7 @@
 
         routeDescriptionToggle.addEventListener('click', function () {
             routeDescription.style.display =
-                routeDescription.style.display === 'none' ||
-                    routeDescription.style.display === ''
+                routeDescription.style.display === 'none' || routeDescription.style.display === ''
                     ? 'block'
                     : 'none';
         });
@@ -821,6 +862,7 @@
         // Initialize with default description
         updaterouteDescription(routeDropdown.value);
     });
+
 
 </script>
 </body>
