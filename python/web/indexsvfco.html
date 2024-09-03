@@ -310,14 +310,13 @@
         <p class="text-gray-700 leading-relaxed text-center">สัดส่วนการมองเห็นท้องฟ้า Sky View Factor (SVF)</p>
 
         <!-- Container for the week description button and description -->
-        <div class="week-description-container">
+        <!-- <div class="week-description-container">
             <button id="week-description-toggle" class="week-description-toggle">
                 <b>Data Week:</b>
             </button>
             <div id="week-description" class="week-description">
-                <!-- Week description will be dynamically inserted here -->
             </div>
-        </div>
+        </div> -->
 
         <!-- Dropdown for weeks -->
         <div class="mb-4 text-center">
@@ -663,12 +662,57 @@
 
             L.control.layers(baseMap, overlayMap).addTo(map);
 
+            // Array containing the date ranges for each week
+            const weekDescriptions = [
+                '  3 มกราคม 2565 - 9 มกราคม 2565',   // Week 1
+                '  10 มกราคม 2565 - 16 มกราคม 2565',  // Week 2
+                '  17 มกราคม 2565 - 23 มกราคม 2565',  // Week 3
+                '  24 มกราคม 2565 - 30 มกราคม 2565',  // Week 4
+                '  31 มกราคม 2565 - 6 กุมภาพันธ์ 2565', // Week 5
+                '  7 กุมภาพันธ์ 2565 - 15 กุมภาพันธ์ 2565', // Week 6
+                '  14 กุมภาพันธ์ 2565 - 20 กุมภาพันธ์ 2565', // Week 7
+                '  21 กุมภาพันธ์ 2565 - 27 กุมภาพันธ์ 2565', // Week 8
+                '  28 กุมภาพันธ์ 2565 - 6 มีนาคม 2565', // Week 9
+                '  7 มีนาคม 2565 - 13 มีนาคม 2565', // Week 10
+                '  14 มีนาคม 2565 - 20 มีนาคม 2565', // Week 11
+                '  21 มีนาคม 2565 - 27 มีนาคม 2565', // Week 12
+                '  28 มีนาคม 2565 - 3 เมษายน 2565', // Week 13
+                '  4 เมษายน 2565 - 10 เมษายน 2565', // Week 14
+                '  11 เมษายน 2565 - 17 เมษายน 2565', // Week 15
+                '  18 เมษายน 2565 - 24 เมษายน 2565', // Week 16
+                '  25 เมษายน 2565 - 1 พฤษภาคม 2565', // Week 17
+                '  2 พฤษภาคม 2565 - 8 พฤษภาคม 2565', // Week 18
+                '  9 พฤษภาคม 2565 - 15 พฤษภาคม 2565', // Week 19
+                '  16 พฤษภาคม 2565 - 22 พฤษภาคม 2565', // Week 20
+                '  23 พฤษภาคม 2565 - 29 พฤษภาคม 2565', // Week 21
+                '  30 พฤษภาคม 2565 - 5 มิถุนายน 2565', // Week 22
+                '  6 มิถุนายน 2565 - 12 มิถุนายน 2565', // Week 23
+                '  13 มิถุนายน 2565 - 19 มิถุนายน 2565', // Week 24
+                '  20 มิถุนายน 2565 - 26 มิถุนายน 2565', // Week 25
+                '  27 มิถุนายน 2565 - 3 กรกฎาคม 2565', // Week 26
+                '  4 กรกฎาคม 2565 - 10 กรกฎาคม 2565', // Week 27
+                '  11 กรกฎาคม 2565 - 17 กรกฎาคม 2565', // Week 28
+                '  18 กรกฎาคม 2565 - 24 กรกฎาคม 2565', // Week 29
+                '  25 กรกฎาคม 2565 - 31 กรกฎาคม 2565', // Week 30
+                '  1 พฤศจิกายน 2564 - 7 พฤศจิกายน 2564', // Week 44
+                '  8 พฤศจิกายน 2564 - 14 พฤศจิกายน 2564', // Week 45
+                '  15 พฤศจิกายน 2564 - 21 พฤศจิกายน 2564', // Week 46
+                '  22 พฤศจิกายน 2564 - 28 พฤศจิกายน 2564', // Week 47
+                '  29 พฤศจิกายน 2564 - 5 ธันวาคม 2564', // Week 48
+                '  6 ธันวาคม 2564 - 12 ธันวาคม 2564', // Week 49
+                '  13 ธันวาคม 2564 - 19 ธันวาคม 2564', // Week 50
+                '  20 ธันวาคม 2564 - 26 ธันวาคม 2564', // Week 51
+                '  27 ธันวาคม 2564 - 2 มกราคม 2565' // Week 52
+            ];
+
             var weekDropdown = document.getElementById('week-dropdown');
             for (let week = 1; week <= 52; week++) {
+                // Adjust the index for descriptions: weeks 44-52 are at the end of the array
+                let descriptionIndex = week <= 30 ? week - 1 : week - 14;
                 if (week < 23 || week > 43) {
                     var option = document.createElement('option');
                     option.value = week;
-                    option.textContent = `Week ${week}`;
+                    option.textContent = `Week ${week} (${weekDescriptions[descriptionIndex]})`;
                     weekDropdown.appendChild(option);
                 }
             }
@@ -686,63 +730,12 @@
 
                     fetchData(selectedWeek);
                 }
-
             });
+
 
             map.on('baselayerchange', function (e) {
                 // Handle base layer change if needed
             });
-            var weekDescription = document.getElementById('week-description');
-            var weekDropdown = document.getElementById('week-dropdown');
-
-            // ฟังก์ชันเพื่ออัปเดตคำบรรยายของสัปดาห์ตามสัปดาห์ที่เลือก
-            function updateWeekDescription(week) {
-                var descriptions = {
-                    1: "Week 1: 3 มกราคม 2565 - 9 มกราคม 2565",
-                    2: "Week 2: 10 มกราคม 2565 - 16 มกราคม 2565",
-                    3: "Week 3: 17 มกราคม 2565 - 23 มกราคม 2565",
-                    4: "Week 4: 24 มกราคม 2565 - 30 มกราคม 2565",
-                    5: "Week 5: 31 มกราคม 2565 - 6 กุมภาพันธ์ 2565",
-                    6: "Week 6: 14 กุมภาพันธ์ 2565 - 20 กุมภาพันธ์ 2565",
-                    7: "Week 7: 21 กุมภาพันธ์ 2565 - 27 กุมภาพันธ์ 2565",
-                    8: "Week 8: 28 กุมภาพันธ์ 2565 - 6 มีนาคม 2565",
-                    9: "Week 9: 7 มีนาคม 2565 - 13 มีนาคม 2565",
-                    10: "Week 10: 14 มีนาคม 2565 - 20 มีนาคม 2565",
-                    11: "Week 11: 21 มีนาคม 2565 - 27 มีนาคม 2565",
-                    12: "Week 12: 28 มกราคม 2565 - 3 เมษายน 2565",
-                    13: "Week 13: 4 เมษายน 2565 - 10 เมษายน 2565",
-                    14: "Week 14: 11 เมษายน 2565 - 17 เมษายน 2565",
-                    15: "Week 15: 18 เมษายน 2565 - 24 เมษายน 2565",
-                    16: "Week 16: 25 มกราคม 2565 - 1 พฤษภาคม 2565",
-                    17: "Week 17: 2 พฤษภาคม 2565 - 8 พฤษภาคม 2565",
-                    18: "Week 18: 9 พฤษภาคม 2565 - 15 พฤษภาคม 2565",
-                    19: "Week 19: 16 พฤษภาคม 2565 - 22 พฤษภาคม 2565",
-                    20: "Week 20: 23 พฤษภาคม 2565 - 29 พฤษภาคม 2565",
-                    21: "Week 21: 30 พฤษภาคม 2565 - 5 มิถุนายน 2565",
-                    22: "Week 22: 10 มกราคม 2565 - 16 มกราคม 2565",
-                    44: "Week 44: 1 พฤศจิกายน 2564 - 7 พฤศจิกายน 2564",
-                    45: "Week 45: 8 พฤศจิกายน 2564 - 14 พฤศจิกายน 2564",
-                    46: "Week 46: 15 พฤศจิกายน 2564 - 21 พฤศจิกายน 2564",
-                    47: "Week 47: 22 พฤศจิกายน 2564 - 28 พฤศจิกายน 2564",
-                    48: "Week 48: 29 พฤศจิกายน 2564 - 5 ธันวาคม 2564",
-                    49: "Week 49: 6 ธันวาคม 2564 - 12 ธันวาคม 2564",
-                    50: "Week 50: 13 ธันวาคม 2564 - 19 ธันวาคม 2564",
-                    51: "Week 51: 20 ธันวาคม 2564 - 26 ธันวาคม 2564",
-                    52: "Week 52: 27 ธันวาคม 2564 - 2 มกราคม 2565"
-                };
-
-                weekDescription.innerHTML = descriptions[week] || "Select a week to see the description.";
-            }
-
-            // แสดงข้อความเริ่มต้นตลอดเวลา
-            weekDescription.innerHTML = "Select a week to see the description.";
-
-            // อัปเดตคำบรรยายเมื่อมีการเลือกสัปดาห์
-            weekDropdown.addEventListener('change', function () {
-                var selectedWeek = this.value;
-                updateWeekDescription(selectedWeek);
-            });
-
         });
 
 
