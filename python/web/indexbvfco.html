@@ -671,36 +671,6 @@
             };
 
             L.control.layers(baseMap, overlayMap).addTo(map);
-
-            var weekDropdown = document.getElementById('week-dropdown');
-            for (let week = 1; week <= 52; week++) {
-                if (week < 23 || week > 43) {
-                    var option = document.createElement('option');
-                    option.value = week;
-                    option.textContent = `Week ${week}`;
-                    weekDropdown.appendChild(option);
-                }
-            }
-
-            weekDropdown.addEventListener('change', function () {
-                var selectedWeek = this.value;
-                if (activeWeek !== selectedWeek) {
-                    activeWeek = selectedWeek;
-
-                    map.eachLayer(function (layer) {
-                        if (layer instanceof L.CircleMarker) {
-                            map.removeLayer(layer);
-                        }
-                    });
-
-                    fetchData(selectedWeek);
-                }
-
-            });
-
-            map.on('baselayerchange', function (e) {
-                // Handle base layer change if needed
-            });
             map.on('baselayerchange', function (e) {
                 // Handle base layer change if needed
             });
