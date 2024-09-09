@@ -206,6 +206,11 @@
         .image-container {
             margin-bottom: 5px;
         }
+
+        #close-popup:hover {
+            background-color: #d43f3f;
+
+        }
     </style>
 </head>
 
@@ -280,9 +285,17 @@
             <span class="loading-text">loading...</span>
         </div>
 
-
+        <!-- Add this HTML for the popup container -->
+        <div id="no-data-popup"
+            style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: linear-gradient(135deg, #f8f9fa, #e9ecef); border: 1px solid #ddd; padding: 20px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); z-index: 1000; text-align: center; max-width: 300px;">
+            <p style="margin-bottom: 15px; font-size: 16px; color: #333; font-weight: bold;">No data available for this
+                location.</p>
+            <button id="close-popup"
+                style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; transition: background-color 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                Close
+            </button>
+        </div>
     </div>
-
     <!-- Footer -->
     <footer class="bg-gray-800 text-white p-4 rounded-t-lg">
         <div class="container mx-auto text-center rounded-t-lg">
@@ -546,11 +559,13 @@
                         // Resize chart on initial load for better responsiveness
                         window.dispatchEvent(new Event('resize'));
                     } else {
-                        // If no data is available, show an alert message
-                        alert('No data available for this location.');
+                        const noDataPopup = document.getElementById('no-data-popup');
+                        noDataPopup.style.display = 'block';
+
+                        document.getElementById('close-popup').addEventListener('click', () => {
+                            noDataPopup.style.display = 'none';
+                        });
                     }
-
-
                 })
 
                 .catch(error => {
