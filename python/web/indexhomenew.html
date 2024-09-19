@@ -62,44 +62,43 @@
 
         /* Loader styles */
         .loader {
-            width: 175px;
-            height: 80px;
-            display: block;
-            margin: auto;
-            background-image: radial-gradient(circle 25px at 25px 25px, #1d4ed8 100%, transparent 0),
-                radial-gradient(circle 50px at 50px 50px, #1d4ed8 100%, transparent 0),
-                radial-gradient(circle 25px at 25px 25px, #1d4ed8 100%, transparent 0),
-                linear-gradient(#1d4ed8 50px, transparent 0);
-            background-size: 50px 50px, 100px 76px, 50px 50px, 120px 40px;
-            background-position: 0px 30px, 37px 0px, 122px 30px, 25px 40px;
-            background-repeat: no-repeat;
+            width: 48px;
+            height: 48px;
+            display: inline-block;
             position: relative;
+            margin: auto;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .loader::after,
+        .loader::before {
+            content: '';
             box-sizing: border-box;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #628af8;
+            /* Blue color */
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: animloader 2s linear infinite;
         }
 
         .loader::after {
-            content: '';
-            left: 0;
-            right: 0;
-            margin: auto;
-            bottom: 20px;
-            position: absolute;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 5px solid transparent;
-            border-color: #FFF transparent;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
+            animation-delay: 1s;
         }
 
-        @keyframes rotation {
+        @keyframes animloader {
             0% {
-                transform: rotate(0deg);
+                transform: scale(0);
+                opacity: 1;
             }
 
             100% {
-                transform: rotate(360deg);
+                transform: scale(1);
+                opacity: 0;
             }
         }
     </style>
@@ -142,19 +141,15 @@
         </p>
 
         <div class="container mx-auto p-4 max-w-5xl">
-            <!-- Loader -->
             <div id="loader-container" class="text-center mb-4">
                 <span class="loader"></span>
             </div>
-
-            <!-- Video Player -->
-            <video id="video-player" class="w-full h-auto rounded-video" autoplay muted playsinline loop
-                style="display:none;">
+            <video id="video-player" class="w-full h-auto rounded-video" style="display: none;" autoplay muted
+                playsinline loop>
                 <source src="{{ url_for('homenewvido') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-
         <!-- Responsive Grid Layout -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
             <a href="/gsv/sumdeep">
@@ -228,15 +223,13 @@
             observer.observe(box);
         });
 
-        // Handle video loader
-        document.addEventListener("DOMContentLoaded", function () {
-            var video = document.getElementById('video-player');
-            var loader = document.getElementById('loader-container');
+        // JavaScript to handle loader visibility
+        const videoPlayer = document.getElementById('video-player');
+        const loaderContainer = document.getElementById('loader-container');
 
-            video.addEventListener('loadeddata', function () {
-                loader.style.display = 'none';
-                video.style.display = 'block';
-            });
+        videoPlayer.addEventListener('canplay', function () {
+            loaderContainer.style.display = 'none';
+            videoPlayer.style.display = 'block';
         });
     </script>
 </body>
