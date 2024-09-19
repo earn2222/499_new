@@ -132,89 +132,90 @@
                 <source src="{{ url_for('homenewvido') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+            <!-- Responsive Grid Layout -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+                <a href="/gsv/sumdeep">
+                    <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center box">
+                        <img src="/gsv/img/homenew1" alt="Box 1 Image" class="w-full h-80 object-cover mb-4 rounded">
+                        <h2 class="text-2xl font-bold mb-2 text-center">การจำแนกข้อมูล <br>จาก Google Street View (GSV)
+                        </h2>
+                        <p class="text-gray-700 mb-4 text-center">- Sky View Factor (SVF) <br> -Tree View Factor (TVF)
+                            <br>-Building View Factor (BVF)
+                        </p>
+                        <button class="btn-pastel text-white px-4 py-2 rounded">click</button>
+                    </div>
+                </a>
+                <a href="/gsv/sumco">
+                    <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center box">
+                        <img src="/gsv/img/homenew2" alt="Box 2 Image" class="w-full h-80 object-cover mb-4 rounded">
+                        <h2 class="text-2xl font-bold mb-2 text-center">Correlation Map <br> เทศบาลนครเชียงใหม่</h2>
+                        <p class="text-gray-700 mb-4 text-center">- Sky View Factor (SVF) <br> -Tree View Factor (TVF)
+                            <br>-Building View Factor (BVF)
+                        </p>
+                        <button class="btn-pastel text-white px-4 py-2 rounded">click</button>
+                    </div>
+                </a>
+                <a href="/gsv/sumroute">
+                    <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center box">
+                        <img src="/gsv/img/homenew3" alt="Box 3 Image" class="w-full h-80 object-cover mb-4 rounded">
+                        <h2 class="text-2xl font-bold mb-2 text-center">Route map <br> 4 เส้นทางเชียงใหม่</h2>
+                        <p class="text-gray-700 mb-4 text-center">- Sky View Factor (SVF) <br> -Tree View Factor (TVF)
+                            <br>-Building View Factor (BVF)
+                        </p>
+                        <button class="btn-pastel text-white px-4 py-2 rounded">click</button>
+                    </div>
+                </a>
+            </div>
         </div>
-        <!-- Responsive Grid Layout -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-            <a href="/gsv/sumdeep">
-                <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center box">
-                    <img src="/gsv/img/homenew1" alt="Box 1 Image" class="w-full h-80 object-cover mb-4 rounded">
-                    <h2 class="text-2xl font-bold mb-2 text-center">การจำแนกข้อมูล <br>จาก Google Street View (GSV)</h2>
-                    <p class="text-gray-700 mb-4 text-center">- Sky View Factor (SVF) <br> -Tree View Factor (TVF)
-                        <br>-Building View Factor (BVF)
-                    </p>
-                    <button class="btn-pastel text-white px-4 py-2 rounded">click</button>
-                </div>
-            </a>
-            <a href="/gsv/sumco">
-                <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center box">
-                    <img src="/gsv/img/homenew2" alt="Box 2 Image" class="w-full h-80 object-cover mb-4 rounded">
-                    <h2 class="text-2xl font-bold mb-2 text-center">Correlation Map <br> เทศบาลนครเชียงใหม่</h2>
-                    <p class="text-gray-700 mb-4 text-center">- Sky View Factor (SVF) <br> -Tree View Factor (TVF)
-                        <br>-Building View Factor (BVF)
-                    </p>
-                    <button class="btn-pastel text-white px-4 py-2 rounded">click</button>
-                </div>
-            </a>
-            <a href="/gsv/sumroute">
-                <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center box">
-                    <img src="/gsv/img/homenew3" alt="Box 3 Image" class="w-full h-80 object-cover mb-4 rounded">
-                    <h2 class="text-2xl font-bold mb-2 text-center">Route map <br> 4 เส้นทางเชียงใหม่</h2>
-                    <p class="text-gray-700 mb-4 text-center">- Sky View Factor (SVF) <br> -Tree View Factor (TVF)
-                        <br>-Building View Factor (BVF)
-                    </p>
-                    <button class="btn-pastel text-white px-4 py-2 rounded">click</button>
-                </div>
-            </a>
-        </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-4">
-        <div class="container mx-auto px-4 text-center">
-            &copy; 2024 by Kanyapat.
-        </div>
-    </footer>
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white p-4">
+            <div class="container mx-auto px-4 text-center">
+                &copy; 2024 by Kanyapat.
+            </div>
+        </footer>
 
-    <!-- JavaScript with nonce -->
-    <script nonce="random123">
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            const menu = document.getElementById('dropdown-menu');
-            menu.classList.toggle('show');
-        });
-
-        // Slide-in effect for boxes
-        const boxes = document.querySelectorAll('.box');
-
-        const options = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const callback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
+        <!-- JavaScript with nonce -->
+        <script nonce="random123">
+            document.getElementById('menu-toggle').addEventListener('click', function () {
+                const menu = document.getElementById('dropdown-menu');
+                menu.classList.toggle('show');
             });
-        };
 
-        const observer = new IntersectionObserver(callback, options);
+            // Slide-in effect for boxes
+            const boxes = document.querySelectorAll('.box');
 
-        boxes.forEach(box => {
-            observer.observe(box);
-        });
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
 
-        // JavaScript to handle loader visibility
-        const videoPlayer = document.getElementById('video-player');
-        const loaderContainer = document.getElementById('loader-container');
+            const callback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
 
-        videoPlayer.addEventListener('canplay', function () {
-            loaderContainer.style.display = 'none';
-            videoPlayer.style.display = 'block';
-        });
-    </script>
+            const observer = new IntersectionObserver(callback, options);
+
+            boxes.forEach(box => {
+                observer.observe(box);
+            });
+
+            // JavaScript to handle loader visibility
+            const videoPlayer = document.getElementById('video-player');
+            const loaderContainer = document.getElementById('loader-container');
+
+            videoPlayer.addEventListener('canplay', function () {
+                loaderContainer.style.display = 'none';
+                videoPlayer.style.display = 'block';
+            });
+        </script>
 </body>
 
 </html>
