@@ -10,6 +10,7 @@ from flask import send_file
 from flask_talisman import Talisman
 from flask import Flask, request, jsonify
 
+
 app = Flask(__name__, template_folder='web')
 
 # Configure Content Security Policy
@@ -113,6 +114,15 @@ def homenew3():
         return send_file(img_path, mimetype='image/jpeg')
     else:
         return "Image not found", 404
+    
+@app.route('/gsv/vido')
+def homenewvido():
+    """Serve a specific video file."""
+    video_path = './homenew/Blue .mp4'  # เส้นทางของไฟล์วิดีโอ
+    if os.path.exists(video_path):
+        return send_file(video_path, mimetype='video/mp4')
+    else:
+        return "Video not found", 404
 
 # หน้า sumdeep
 @app.route("/gsv/sumdeep")
