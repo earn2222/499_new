@@ -60,52 +60,28 @@
             border-radius: 1rem;
         }
 
-        /* Loader styles */
-        .loader,
-        .loader:before,
-        .loader:after {
-            border-radius: 50%;
-            width: 2.5em;
-            height: 2.5em;
-            animation-fill-mode: both;
-            animation: bblFadInOut 1.8s infinite ease-in-out;
+        /* Updated Loader styles */
+        #loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+            min-height: 300px;
         }
 
+        /* Loader styles remain the same */
         .loader {
-            color: #6da8eb;
-            font-size: 7px;
-            position: relative;
-            text-indent: -9999em;
-            transform: translateZ(0);
-            animation-delay: -0.16s;
+            width: 120px;
+            height: 60px;
+            border-radius: 200px 200px 0 0;
+            -webkit-mask: repeating-radial-gradient(farthest-side at bottom, #0000 0, #000 1px 12%, #0000 calc(12% + 1px) 20%);
+            background: radial-gradient(farthest-side at bottom, #514b82 0 95%, #0000 0) bottom/0% 0% no-repeat #ddd;
+            animation: l10 2s infinite steps(6);
         }
 
-        .loader:before,
-        .loader:after {
-            content: '';
-            position: absolute;
-            top: 0;
-        }
-
-        .loader:before {
-            left: -3.5em;
-            animation-delay: -0.32s;
-        }
-
-        .loader:after {
-            left: 3.5em;
-        }
-
-        @keyframes bblFadInOut {
-
-            0%,
-            80%,
+        @keyframes l10 {
             100% {
-                box-shadow: 0 2.5em 0 -1.3em
-            }
-
-            40% {
-                box-shadow: 0 2.5em 0 0
+                background-size: 120% 120%;
             }
         }
     </style>
@@ -149,7 +125,7 @@
 
         <div class="container mx-auto p-4 max-w-5xl">
             <div id="loader-container" class="text-center mb-4">
-                <span class="loader"></span>
+                <div class="loader"></div>
             </div>
             <video id="video-player" class="w-full h-auto rounded-video" style="display: none;" autoplay muted
                 playsinline loop>
