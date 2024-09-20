@@ -76,7 +76,6 @@
             border-radius: 200px 200px 0 0;
             -webkit-mask: repeating-radial-gradient(farthest-side at bottom, #0000 0, #000 1px 12%, #0000 calc(12% + 1px) 20%);
             mask: repeating-radial-gradient(farthest-side at bottom, #0000 0, #000 1px 12%, #0000 calc(12% + 1px) 20%);
-            /* Standard property */
             background: radial-gradient(farthest-side at bottom, #514b82 0 95%, #0000 0) bottom/0% 0% no-repeat #ddd;
             animation: l10 2s infinite steps(6);
         }
@@ -129,8 +128,7 @@
             <div id="loader-container" class="text-center mb-4">
                 <div class="loader"></div>
             </div>
-            <video id="video-player" class="w-full h-auto rounded-video" style="display: none;" autoplay muted
-                playsinline loop>
+            <video id="video-player" class="w-full h-auto rounded-video" autoplay muted playsinline loop preload="auto">
                 <source src="{{ url_for('homenewvido') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
