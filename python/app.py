@@ -6,7 +6,7 @@ from psycopg2.extras import RealDictCursor
 import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template, jsonify
 from werkzeug.utils import secure_filename
-from flask import send_file
+from flask import send_file, abort
 from flask_talisman import Talisman
 from flask import Flask, request, jsonify
 
@@ -118,11 +118,15 @@ def homenew3():
 @app.route('/gsv/vido')
 def homenewvido():
     """Serve a specific video file."""
-    video_path = './homenew/Blue .mp4'  # เส้นทางของไฟล์วิดีโอ
+    video_dir = './homenew'
+    video_filename = 'Blue.mp4'  # ตรวจสอบว่าชื่อไฟล์ถูกต้อง ไม่มีช่องว่างเกินจำเป็น
+    video_path = os.path.join(video_dir, video_filename)
+
     if os.path.exists(video_path):
-        return send_file(video_path, mimetype='video/mp4')
+        # ส่งไฟล์พร้อม Cache-Control header เพื่อให้ไฟล์โหลดได้เร็วขึ้นในครั้งถัดไป
+        return send_file(video_path, mimetype='video/mp4', cache_timeout=31536000)  # Cache ได้นาน 1 ปี
     else:
-        return "Video not found", 404
+        return abort(404, description="Video not found")
 
 # หน้า sumdeep
 @app.route("/gsv/sumdeep")
