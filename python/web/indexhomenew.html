@@ -76,7 +76,7 @@
             border-radius: 200px 200px 0 0;
             -webkit-mask: repeating-radial-gradient(farthest-side at bottom, #0000 0, #000 1px 12%, #0000 calc(12% + 1px) 20%);
             mask: repeating-radial-gradient(farthest-side at bottom, #0000 0, #000 1px 12%, #0000 calc(12% + 1px) 20%);
-            background: radial-gradient(farthest-side at bottom, #514b82 0 95%, #0000 0) bottom/0% 0% no-repeat #ddd;
+            background: radial-gradient(farthest-side at bottom, #221870 0 95%, #0000 0) bottom/0% 0% no-repeat #ddd;
             animation: l10 2s infinite steps(6);
         }
 
@@ -84,6 +84,12 @@
             100% {
                 background-size: 120% 120%;
             }
+        }
+
+        #video-player {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            /* Smooth transition for opacity */
         }
     </style>
 </head>
@@ -215,6 +221,7 @@
         videoPlayer.addEventListener('canplay', function () {
             loaderContainer.style.display = 'none';
             videoPlayer.style.display = 'block';
+            videoPlayer.style.opacity = '1'; // Fade-in effect
         });
     </script>
 </body>
