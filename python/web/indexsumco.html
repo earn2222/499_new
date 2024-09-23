@@ -103,6 +103,39 @@
         .hover-effect:hover {
             transform: scale(1.05);
         }
+
+        @keyframes scrollUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply the animation to each box */
+        .box1,
+        .box2,
+        .box3 {
+            opacity: 0;
+            animation: scrollUp 1s ease forwards;
+        }
+
+        /* Stagger the animation for each box */
+        .box1 {
+            animation-delay: 0.3s;
+        }
+
+        .box2 {
+            animation-delay: 0.6s;
+        }
+
+        .box3 {
+            animation-delay: 0.9s;
+        }
     </style>
 </head>
 
