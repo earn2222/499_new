@@ -12,6 +12,7 @@ pybase64
 jsons
 talisman
 numpy
+libgl1-mesa-glx
 opencv-python
 psycopg2-binary
 flask-talisman
